@@ -50,6 +50,10 @@ struct RentalOrder {
         total_price = days * carr.price_per_day;
     }
 };
+class RentalService
+{
+    
+};
 
 int main() {
     std::cout << "Hello, World!\n";
