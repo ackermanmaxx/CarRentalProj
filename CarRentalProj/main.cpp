@@ -60,6 +60,7 @@ private:
         return sqrt(pow(loc1.first - loc2.first, 2) + pow(loc1.second - loc2.second, 2));
     }
 //Danik tupoi
+//Danik tupoi
 public:
     
 };
