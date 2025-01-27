@@ -3,6 +3,7 @@
 #include <queue>
 #include <cmath>
 #include <algorithm>
+#include <list>
 
 using namespace std;
 
