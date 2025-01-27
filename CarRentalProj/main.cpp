@@ -13,7 +13,7 @@ struct Car {
     double price_per_day;
     vector<string> features;
     pair<double, double> location;
-
+    Car() : car_id(0), mark_c(""), model(""), price_per_day(0.0), features({}), location({0.0, 0.0}) {}
     Car(int id, string mk, string mdl, double price, vector<string> f_s, pair<double, double> loc) {
         car_id = id;
         mark_c = mk;
@@ -27,13 +27,30 @@ struct Customer {
     int customer_id;
     string name;
     string contact;
-
+    Customer() : customer_id(0), name(""), contact("") {}
     Customer(int id, string nm, string c_t) {
         customer_id = id;
         name = nm;
         contact = c_t;
     }
 };
+struct RentalOrder {
+    int order_id;
+    Customer customer;
+    Car car;
+    int rental_days;
+    double total_price;
+
+    RentalOrder(int id, Customer cust, Car carr, int days)
+    {
+        order_id = id;
+        customer = cust;
+        car = carr;
+        rental_days = days;
+        total_price = days * carr.price_per_day;
+    }
+};
+
 int main() {
     std::cout << "Hello, World!\n";
     return 0;
