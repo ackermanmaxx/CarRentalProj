@@ -23,7 +23,17 @@ struct Car {
         location = loc;
     }
 };
+struct Customer {
+    int customer_id;
+    string name;
+    string contact;
 
+    Customer(int id, string nm, string c_t) {
+        customer_id = id;
+        name = nm;
+        contact = c_t;
+    }
+};
 int main() {
     std::cout << "Hello, World!\n";
     return 0;
