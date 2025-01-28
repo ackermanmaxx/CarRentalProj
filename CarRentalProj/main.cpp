@@ -59,7 +59,7 @@ private:
     double distance(pair<double, double> loc1, pair<double, double> loc2) {
         return sqrt(pow(loc1.first - loc2.first, 2) + pow(loc1.second - loc2.second, 2));
     }
-
+//че там
 public:
     
 };
@@ -68,3 +68,4 @@ int main() {
     cout << "Hello, World!\n";
     return 0;
 }
+
