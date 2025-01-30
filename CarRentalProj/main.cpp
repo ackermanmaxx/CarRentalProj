@@ -222,7 +222,8 @@ int main() {
         cout << "\nCar Rental System Menu:" << endl;
         cout << "1. Request a rental" << endl;
         cout << "2. View saved rental orders" << endl;
-        cout << "3. Exit" << endl;
+        cout << "3. Get Contacts" << endl;
+        cout << "4. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -236,6 +237,13 @@ int main() {
                 break;
             }
             case 3: {
+                cout<<"\nOur Contacts:"<<endl;
+                cout<<"Head of the Company: "<<"Maxim Ligay "<<"+7-771-907-4809"<<endl;
+                cout<<"Manager: "<<"Daniyar Berkaliyev "<<"+7-707-941-8250"<<endl;
+                cout<<"Cleaner: "<<"Nurlan Kabiyev "<<"+7-800-555-3555"<<endl;
+                break;
+            }
+            case 4: {
                 cout << "Exiting system. Goodbye!" << endl;
                 break;
             }
@@ -244,7 +252,7 @@ int main() {
                 break;
             }
         }
-    } while (choice != 3);
+    } while (choice != 4);
 
     return 0;
 }
