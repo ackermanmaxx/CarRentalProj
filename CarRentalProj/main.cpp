@@ -92,11 +92,13 @@ public:
             available_cars.sort([](const Car& a, const Car& b) {
                 return a.price_per_day < b.price_per_day;
             });
-        } else if (method == "features") {
+        }
+        else if (method == "features") {
             available_cars.sort([](const Car& a, const Car& b) {
                 return a.features.size() > b.features.size();
             });
-        } else if (method == "distance") {
+        }
+        else if (method == "distance") {
             available_cars.sort([&](const Car& a, const Car& b) {
                 return distance(a.location, user_location) < distance(b.location, user_location);
             });
