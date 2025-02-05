@@ -158,10 +158,6 @@ public:
 
             Car selected_car = *it;
 
-            if (rented_car_ids.count(selected_car.car_id) > 0) {
-                cout << "Sorry, this car has already been rented." << endl;
-                return;
-            }
 
             cout << "Enter rental days: ";
             int rental_days;
@@ -179,15 +175,33 @@ public:
                 RentalOrder order(order_id, customer, selected_car, rental_days);
                 orders_queue.push(order);
                 rented_car_ids.insert(selected_car.car_id);
-
                 cout << "Rental order created successfully!" << endl;
                 cout << "Order ID: " << order_id << ", Car: " << selected_car.mark_c << " " << selected_car.model
                      << ", Total price: " << order.total_price << endl;
             } else {
-                cout << "Order not confirmed. Returning to the menu." << endl;
+                cout << "Order not confirmed." << endl;
             }
         } else {
             cout << "No cars available for rental." << endl;
+        }
+    }
+    void removeOrder(int order_id) {
+        queue<RentalOrder> temp_queue;
+        bool found = false;
+        while (!orders_queue.empty()) {
+            RentalOrder order = orders_queue.front();
+            orders_queue.pop();
+            if (order.order_id == order_id) {
+                rented_car_ids.erase(order.car.car_id);
+                found = true;
+                cout << "Your order with ID " << order_id << " was successfully removed." << endl;
+            } else {
+                temp_queue.push(order);
+            }
+        }
+        orders_queue = temp_queue;
+        if (!found) {
+            cout << "Order ID " << order_id << " not found." << endl;
         }
     }
 
@@ -216,8 +230,11 @@ int main() {
     RentalService rentalService;
     rentalService.addCar(Car(1, "Lada", "Priora", 250.0, {"Stens", "Red colour"}, {90.0, 134.0}));
     rentalService.addCar(Car(2, "Lada", "Calina", 155.0, {"Dorogo", "Ploho"}, {500.0, 3.0}));
-    rentalService.addCar(Car(3, "Daewoo", "Matiz", 1000.0, {"Backup Camera"}, {402.0, 113.0}));
+    rentalService.addCar(Car(3, "Daewoo", "Matiz", 10000.0, {"stunt top"}, {402.0, 113.0}));
     rentalService.addCar(Car(4, "BMW", "M8", 2000.0, {"650HP", "Switching Drives", "Alcantara"}, {200.0, 150.0}));
+    rentalService.addCar(Car(5, "Chevrolet", "Cobalt", 100.0, {"Deshevo", "Dushevno"}, {500.0, 550.0}));
+    rentalService.addCar(Car(6, "Dodge", "Challenger", 990.0, {"1000HP", "RWD"}, {60.0, 20.0}));
+    rentalService.addCar(Car(7, "Infinity", "CX35", 890.0, {"Danik's Love", "Slayboys"}, {310.0, 920.0}));
 
     int choice;
     do {
@@ -225,7 +242,8 @@ int main() {
         cout << "1. Request a rental" << endl;
         cout << "2. View saved rental orders" << endl;
         cout << "3. Get Contacts" << endl;
-        cout << "4. Exit" << endl;
+        cout << "4. Remove order by ID" << endl;
+        cout << "5. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -246,15 +264,23 @@ int main() {
                 break;
             }
             case 4: {
+                cout << "Enter Order ID to remove: ";
+                int order_id;
+                cin >> order_id;
+                rentalService.removeOrder(order_id);
+                break;
+            }
+            case 5: {
                 cout << "Exiting system. Goodbye!" << endl;
                 break;
             }
+                
             default: {
                 cout << "Invalid choice. Please try again." << endl;
                 break;
             }
         }
-    } while (choice != 4);
+    } while (choice != 5);
 
     return 0;
 }
